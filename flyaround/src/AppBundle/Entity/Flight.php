@@ -12,6 +12,41 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Flight
 {
+    public function __toString()
+    {
+        // Return the User object with "[fisrtName] - [lastName]]" FORMAT, when __toString is called.
+        return $this->departure . " " . $this->arrival;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Site", inversedBy="departures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $departure;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Site", inversedBy="arrivals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $arrival;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PlaneModel", inversedBy="planes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $plane;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="pilots")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $pilot;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Reservation", inversedBy="flight")
+     */
+    private $flights;
+
     /**
      * @var int
      *
@@ -52,7 +87,7 @@ class Flight
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -217,5 +252,124 @@ class Flight
     {
         return $this->wasDone;
     }
-}
 
+    /**
+     * Set departure.
+     *
+     * @param \AppBundle\Entity\Site $departure
+     *
+     * @return Flight
+     */
+    public function setDeparture(\AppBundle\Entity\Site $departure)
+    {
+        $this->departure = $departure;
+
+        return $this;
+    }
+
+    /**
+     * Get departure.
+     *
+     * @return \AppBundle\Entity\Site
+     */
+    public function getDeparture()
+    {
+        return $this->departure;
+    }
+
+    /**
+     * Set arrival.
+     *
+     * @param \AppBundle\Entity\Site $arrival
+     *
+     * @return Flight
+     */
+    public function setArrival(\AppBundle\Entity\Site $arrival)
+    {
+        $this->arrival = $arrival;
+
+        return $this;
+    }
+
+    /**
+     * Get arrival.
+     *
+     * @return \AppBundle\Entity\Site
+     */
+    public function getArrival()
+    {
+        return $this->arrival;
+    }
+
+    /**
+     * Set plane.
+     *
+     * @param \AppBundle\Entity\PlaneModel $plane
+     *
+     * @return Flight
+     */
+    public function setPlane(\AppBundle\Entity\PlaneModel $plane)
+    {
+        $this->plane = $plane;
+
+        return $this;
+    }
+
+    /**
+     * Get plane.
+     *
+     * @return \AppBundle\Entity\PlaneModel
+     */
+    public function getPlane()
+    {
+        return $this->plane;
+    }
+
+    /**
+     * Set pilot.
+     *
+     * @param \AppBundle\Entity\User $pilot
+     *
+     * @return Flight
+     */
+    public function setPilot(\AppBundle\Entity\User $pilot)
+    {
+        $this->pilot = $pilot;
+
+        return $this;
+    }
+
+    /**
+     * Get pilot.
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getPilot()
+    {
+        return $this->pilot;
+    }
+
+    /**
+     * Set flights.
+     *
+     * @param \AppBundle\Entity\Reservation|null $flights
+     *
+     * @return Flight
+     */
+    public function setFlights(\AppBundle\Entity\Reservation $flights = null)
+    {
+        $this->flights = $flights;
+
+        return $this;
+    }
+
+    /**
+     * Get flights.
+     *
+     * @return \AppBundle\Entity\Reservation|null
+     */
+    public function getFlights()
+    {
+        return $this->flights;
+    }
+}

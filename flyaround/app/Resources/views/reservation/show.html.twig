@@ -10,8 +10,8 @@
                 <td>{{ reservation.id }}</td>
             </tr>
             <tr>
-                <th>Breservedseats</th>
-                <td>{{ reservation.bReservedSeats }}</td>
+                <th>Nbreservedseats</th>
+                <td>{{ reservation.nbReservedSeats }}</td>
             </tr>
             <tr>
                 <th>Publicationdate</th>
@@ -27,6 +27,14 @@
     <ul>
         <li>
             <a href="{{ path('reservation_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('reservation_edit', { 'id': reservation.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
         </li>
     </ul>
 {% endblock %}

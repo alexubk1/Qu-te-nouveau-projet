@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reservation
 {
+    public function __toString()
+    {
+        // Return the Review object with "[id]" FORMAT, when __toString is called.
+        return "id=".$this->id;
+    }
+
     /**
      * @var int
      *
@@ -24,9 +30,9 @@ class Reservation
     /**
      * @var int
      *
-     * @ORM\Column(name="bReservedSeats", type="smallint")
+     * @ORM\Column(name="nbReservedSeats", type="smallint")
      */
-    private $bReservedSeats;
+    private $nbReservedSeats;
 
     /**
      * @var \DateTime
@@ -42,6 +48,17 @@ class Reservation
      */
     private $wasDone;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="passengers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $passenger;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Flight", inversedBy="flights")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $flight;
 
     /**
      * Get id
@@ -54,27 +71,27 @@ class Reservation
     }
 
     /**
-     * Set bReservedSeats
+     * Set nbReservedSeats
      *
-     * @param integer $bReservedSeats
+     * @param integer $nbReservedSeats
      *
      * @return Reservation
      */
-    public function setBReservedSeats($bReservedSeats)
+    public function setNbReservedSeats($nbReservedSeats)
     {
-        $this->bReservedSeats = $bReservedSeats;
+        $this->nbReservedSeats = $nbReservedSeats;
 
         return $this;
     }
 
     /**
-     * Get bReservedSeats
+     * Get nbReservedSeats
      *
      * @return int
      */
-    public function getBReservedSeats()
+    public function getNbReservedSeats()
     {
-        return $this->bReservedSeats;
+        return $this->nbReservedSeats;
     }
 
     /**
@@ -124,5 +141,52 @@ class Reservation
     {
         return $this->wasDone;
     }
-}
 
+    /**
+     * Set passenger.
+     *
+     * @param \AppBundle\Entity\User $passenger
+     *
+     * @return Reservation
+     */
+    public function setPassenger(\AppBundle\Entity\User $passenger)
+    {
+        $this->passenger = $passenger;
+
+        return $this;
+    }
+
+    /**
+     * Get passenger.
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getPassenger()
+    {
+        return $this->passenger;
+    }
+
+    /**
+     * Set flight.
+     *
+     * @param \AppBundle\Entity\Flight $flight
+     *
+     * @return Reservation
+     */
+    public function setFlight(\AppBundle\Entity\Flight $flight)
+    {
+        $this->flight = $flight;
+
+        return $this;
+    }
+
+    /**
+     * Get flight.
+     *
+     * @return \AppBundle\Entity\Flight
+     */
+    public function getFlight()
+    {
+        return $this->flight;
+    }
+}
