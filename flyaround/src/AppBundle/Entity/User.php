@@ -51,7 +51,7 @@ class User
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthDate", type="datetime")
+     * @ORM\Column(name="birthDate", type="date")
      */
     private $birthDate;
 
@@ -77,7 +77,7 @@ class User
     private $isACertifiedPilot;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="reviewAuthor")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Review", inversedBy="reviewAuthor")
      */
     private $reviewAuthors;
 
