@@ -19,7 +19,7 @@ use AppBundle\Entity\Reservation;
 class ListingController extends Controller
 {
     /**
-     * List one reservation with one flight and one planemodel, with few IDs.
+     * List all reviews.
      *
      * @Route("/{reservation_id}/flight/{flight_id}/planemodel/{planemodel_id}", name="listing_index", requirements={"reservation_id": "\d+"})
      * @Method("GET")
