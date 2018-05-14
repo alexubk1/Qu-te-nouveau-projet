@@ -72,9 +72,9 @@ class User
     private $phoneNumber;
 
     /**
-     * @var \DateTime
+     * @var \Datetime
      *
-     * @ORM\Column(name="birthDate", type="date")
+     * @ORM\Column(name="birthDate", type="datetime")
      */
     private $birthDate;
 
@@ -387,4 +387,3 @@ class User
         return $this->passengers;
     }
 }
-
