@@ -21,7 +21,7 @@ class ReviewType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('text', TextareaType::class, array('attr' => array('maxlenght' => 250, 'label' => 'description')))
+            ->add('text', TextareaType::class, array('attr' => array('maxlength' => 250, 'label' => 'description')))
             ->add('publicationDate', \Symfony\Component\Form\Extension\Core\Type\DateType::class, array('data' => new \DateTime('now')))
             ->add('note', IntegerType::class, array('attr' => array('min' => 0, 'max'=>5, 'label'=>'Note')))
             ->add('agreeTerms', CheckboxType::class, array('mapped'=>false))
