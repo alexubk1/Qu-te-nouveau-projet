@@ -73,7 +73,7 @@
 /*! all exports used */
 /***/ (function(module, exports) {
 
-throw new Error("Module parse failed: Unexpected token (1:14)\nYou may need an appropriate loader to handle this file type.\n| $brand-primary: darken(#428bca, 20%);\n| \n| @import '~bootstrap/scss/bootstrap';");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 
