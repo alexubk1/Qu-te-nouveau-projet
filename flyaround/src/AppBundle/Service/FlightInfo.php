@@ -69,17 +69,11 @@ class FlightInfo
      * @param float $speed
      * @return string
      */
-    public function getTime($distance, $speed)
-    {
+    public function getTime($distance, $speed) {
         $i = ($distance/$speed);
         $j = $i - floor($i);
-        $j = 60*$j;
-        if ($j = 60){
-            $duration = 1 ." h";
-        }
-        else {
+        $j = (60*$j);
             $duration = floor($i) . " h". round($j) . " m";
-        }
         return $duration;
     }
 }
